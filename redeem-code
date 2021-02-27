@@ -1,0 +1,101 @@
+
+local args = {
+    [1] = "KingPieceComeBack"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+
+local args = {
+    [1] = "DragonIsStrong"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+
+local args = {
+    [1] = "Peodiz"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+
+local args = {
+    [1] = "BeckyStyle"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+
+local args = {
+    [1] = "REDBIRD"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+
+local args = {
+    [1] = "100KFAV"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+
+local args = {
+    [1] = "Merry Christmas"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+
+local args = {
+    [1] = "Snow"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+
+local args = {
+    [1] = "String"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+
+local args = {
+    [1] = "Shadow"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+
+local args = {
+    [1] = "80MVISITS"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+
+local args = {
+    [1] = "DinoxLive"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+
+local args = {
+    [1] = "Allo"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+
+local args = {
+    [1] = "Dough"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+
+local args = {
+    [1] = "Spino"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+
+local args = {
+    [1] = "Samurai"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+
+
+
+
+
