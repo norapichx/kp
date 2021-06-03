@@ -6,6 +6,14 @@ while true do wait()
 end
 if game.PlaceId == 4520749081 or game.PlaceId == 6381829480 or game.PlaceId == 5931540094 then -- KP เก่า กับ ใหม่ ลงดัน
 
+	local ui = game:GetService("CoreGui"):FindFirstChild("สวัสดี")
+if ui then
+    ui:Destroy()
+end
+
+-- _G.Ui = tostring(math.random(1,1000000))
+
+
  game:GetService("RunService").RenderStepped:connect(function()
       pcall(function()
   if game:GetService("Players").LocalPlayer.Character.Services:FindFirstChild("Client") then
@@ -15,10 +23,6 @@ if game.PlaceId == 4520749081 or game.PlaceId == 6381829480 or game.PlaceId == 5
   end)
 
 -- loading + ui -- 
-local ui = game:GetService("CoreGui"):FindFirstChild("BETA")
-if ui then
-    ui:Destroy()
-end
 
  for i,v in pairs(game:GetService("Players")["LocalPlayer"].PlayerGui.Chat:GetDescendants()) do -- ลบ time server
  	if v.Name == "Timers" then
@@ -32,7 +36,20 @@ local VirtualUser = game:GetService("VirtualUser")
 local vu = game:GetService("VirtualUser")
 
 
+xwd = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
+Gamename = xwd.Name
+local oofHubMainMenu = Instance.new("ScreenGui")
+
 ---------------------------------------------------------------
+
+
+local player = game.Players.LocalPlayer.Character.HumanoidRootPart
+local plr = game.Players.LocalPlayer
+local VirtualUser = game:GetService("VirtualUser")
+local vu = game:GetService("VirtualUser")
+
+warn("Anti-AFK Starting")
+wait(.1)
 game:GetService("Players").LocalPlayer.Idled:connect(function()
    vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
    wait(1)
@@ -40,6 +57,15 @@ game:GetService("Players").LocalPlayer.Idled:connect(function()
 
 end)
 ----------------------------------------------
+
+game.StarterGui:SetCore("SendNotification", { -- starting
+	Title = "Starting BETA";
+	Text = Gamename;
+	Icon = "rbxassetid://6738308001";
+	Duration = 5;
+	})
+
+ --------------------------
 
 local Flux = {RainbowColorValue = 0, HueSelectionPosition = 0}
 local PresetColor = Color3.fromRGB(66, 134, 255)
@@ -51,7 +77,7 @@ local Mouse = LocalPlayer:GetMouse()
 local CloseBind = Enum.KeyCode.RightControl
 
 local FluxLib = Instance.new("ScreenGui")
-FluxLib.Name = "BETA"
+FluxLib.Name = "สวัสดี"
 FluxLib.Parent = game.CoreGui
 FluxLib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
@@ -2792,7 +2818,9 @@ function Flux:Window(text, bottom,mainclr,toclose)
 end
 
 -----------------------------------------------------------------------------------------------------------------------
-local win = Flux:Window("Beta 0.1", "King Legacy", Color3.fromRGB(255, 0, 0), Enum.KeyCode.RightControl)
+
+
+local win = Flux:Window("BETA", "King Legacy", Color3.fromRGB(255, 0, 0), Enum.KeyCode.RightControl)
 local tab = win:Tab("AutoFarm", "http://www.roblox.com/asset/?id=6022668907")
 
 local MyLevel = game:GetService("Players").LocalPlayer.PlayerStats.lvl.Value
@@ -2806,7 +2834,7 @@ elseif placeId == 6381829480 then -- โลก2
 end
 
 
-dis = 8
+dis = 7
 tab:Slider("Distance AutoFarm"," ",1,20,dis,function(value)
     dis = value
 end)
@@ -2822,7 +2850,7 @@ for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
     end
 end
 
-SelectToolWeapon = ""
+SelectWeapon = ""
 function EquipWeapon(ToolSe)
    if game.Players.LocalPlayer.Backpack:FindFirstChild(ToolSe) then
       local tool = game.Players.LocalPlayer.Backpack:FindFirstChild(ToolSe)
@@ -2832,7 +2860,7 @@ function EquipWeapon(ToolSe)
 end
 
 local SelectWeapon = tab:Dropdown("Select Weapon",Wapon,function(Value)
-    SelectToolWeapon = Value
+    SelectWeapon1 = Value
 end)
 
 tab:Button("Refresh Weapon"," ",function()
@@ -2854,32 +2882,32 @@ end)
            Ms = "Soldier [Lv. 1]"
            NameQuest = "QuestLvl1"
            NameMon = "Soldier"
-           CFrameQuest = CFrame.new(2012.87805, 48.0745316, -1809.86963)
-		   CFrameMon = CFrame.new(1940.46045, 48.0327682, -1883.03821)
+           CFrameQuest = CFrame.new(2278.07324, 48.1432991, -1649.34082)
+		   CFrameMon = CFrame.new(2335.67432, 48.1932831, -1606.96716)
         elseif MyLevel == 10 or MyLevel <= 49 then
             Ms = "Clown Pirate [Lv. 10]"
             NameQuest = "QuestLvl10"
             NameMon = "Clown Pirate"
-            CFrameQuest = CFrame.new(2383.63159, 48.7798653, -1667.9718)
-			CFrameMon = CFrame.new(2453.48413, 48.0334702, -1646.37158)
+            CFrameQuest = CFrame.new(2496.50562, 48.1313591, -1771.6543)
+			CFrameMon = CFrame.new(2459.31006, 48.1940727, -1671.36938)
         elseif MyLevel == 50 or MyLevel <= 99 then 
             Ms = "Clown Pirate [Lv. 50]"
             NameQuest = "QuestLvl50"
             NameMon = "Clown Pirate"
-            CFrameQuest = CFrame.new(3966.1687, 9.80361271, 176.298721)
-			CFrameMon = CFrame.new(4116.01221, 9.99897575, 244.436203)
+            CFrameQuest = CFrame.new(4024.19287, 37.7941399, 268.702942)
+			CFrameMon = CFrame.new(4050.6897, 37.7941399, 180.034821)
         elseif MyLevel == 100 or MyLevel <= 179 then 
             Ms = "Commander [Lv. 100]"
             NameQuest = "QuestLvl100"
             NameMon = "Commander"
-            CFrameQuest = CFrame.new(1917.84131, 13.3019161, 1180.32642)
-			CFrameMon = CFrame.new(1846.24988, 13.0445309, 1229.67542)
+            CFrameQuest = CFrame.new(1880.19104, 39.336544, 1159.45288)
+			CFrameMon = CFrame.new(1915.03491, 39.3863792, 1452.6521)
 		elseif MyLevel == 180 or MyLevel <= 249 then 
             Ms = "Fishman [Lv. 180]"
             NameQuest = "QuestLvl180"
             NameMon = "Fishman"
-            CFrameQuest = CFrame.new(3848.0686, 10.559288, 3330.21289)   
-			CFrameMon = CFrame.new(4077.16675, 10.4755125, 3422.43994)        
+            CFrameQuest = CFrame.new(3874.24243, 10.4919729, 3251.10303)   
+			CFrameMon = CFrame.new(3981.19653, 10.541934, 3284.33203)        
 		elseif MyLevel == 250 or MyLevel <= 399 then
             Ms = "Trainer Chef [Lv. 250]"
             NameQuest = "QuestLvl250"
@@ -2890,20 +2918,20 @@ end)
             Ms = "Snow Soldier [Lv. 400]"
             NameQuest = "QuestLvl400"
             NameMon = "Snow Soldier"
-            CFrameQuest = CFrame.new(-2484.08594, 27.7731552, 1770.8042)    
-			CFrameMon = CFrame.new(-2625.99878, 27.7731609, 1818.87048)  
+            CFrameQuest = CFrame.new(-2852.38989, 18.0817909, 1421.12366)    
+			CFrameMon = CFrame.new(-2815.09814, 18.0717945, 1493.57849)  
 		elseif MyLevel == 800 or MyLevel <= 999 then 
             Ms = "Sky Soldier [Lv. 800]"
             NameQuest = "QuestLvl800"
             NameMon = "Sky Soldier"
-            CFrameQuest = CFrame.new(-797.971741, 540.09259, 5268.56543)    
-			CFrameMon = CFrame.new(-592.142822, 540.092712, 5219.41553)  
+            CFrameQuest = CFrame.new(-1252.55969, 200.65274, 4580.86816)    
+			CFrameMon = CFrame.new(-1362.03247, 222.379227, 4703.32178)  
 		elseif MyLevel == 1000 or MyLevel <= 1499 then 
             Ms = "Soldier [Lv. 1000]"
             NameQuest = "QuestLvl1000"
             NameMon = "Soldier"
-            CFrameQuest = CFrame.new(8299.37988, 11.0177364, 5611.43555)    
-			CFrameMon = CFrame.new(8641.51758, 11.0177393, 5494.1001) 
+            CFrameQuest = CFrame.new(8271.08008, 11.8968792, 5437.74219)    
+			CFrameMon = CFrame.new(8351.88965, 11.9012327, 5565.91113) 
 		elseif MyLevel == 1500 or MyLevel <= 1749 then 
             Ms = "Zombie [Lv. 1500]"
             NameQuest = "QuestLvl1500"
@@ -2914,14 +2942,14 @@ end)
             Ms = "New World Pirate [Lv. 1750]"
             NameQuest = "QuestLvl1750"
             NameMon = "New World Pirate"
-            CFrameQuest = CFrame.new(8416.33301, 49.7570839, 1089.53113)    
-			CFrameMon = CFrame.new(8451.24414, 49.7490883, 855.415955) 
+            CFrameQuest = CFrame.new(8601.64551, 49.5820999, 1731.67859)    
+			CFrameMon = CFrame.new(8470.72852, 49.5910835, 1894.18689) 
 		elseif MyLevel == 1800 or MyLevel <= 1999 then 
             Ms = "Rear Admiral [Lv. 1800]"
             NameQuest = "QuestLvl1800"
             NameMon = "Rear Admiral"
-            CFrameQuest = CFrame.new(8551.13477, 49.7450829, 523.118713)    
-			CFrameMon = CFrame.new(8314.21191, 49.767086, 558.384644) 
+            CFrameQuest = CFrame.new(8581.98145, 49.5780907, 1346.16626)    
+			CFrameMon = CFrame.new(8507.16699, 49.5940742, 1316.30176) 
 		elseif MyLevel == 2000 or MyLevel <= 2149 then 
             Ms = "Fishman [Lv. 2000]"
             NameQuest = "QuestLvl2000"
@@ -2941,8 +2969,8 @@ end)
             Ms = "Beast Pirate [Lv. 2300]"
             NameQuest = "QuestLvl2300"
             NameMon = "Beast Pirate"
-            CFrameQuest = CFrame.new(172.493057, 75.3446808, -4821.34473)    
-			CFrameMon = CFrame.new(691.248901, 75.3450241, -5558.92627) 
+            CFrameQuest = CFrame.new(414.411407, 75.2909546, -5425.81787)    
+			CFrameMon = CFrame.new(707.726929, 75.3450241, -5521.07617) 
 		elseif MyLevel == 2400 or MyLevel <= 2449 then  
             Ms = "Bandit Beast Pirate [Lv. 2400]"
             NameQuest = "QuestLvl2400"
@@ -2959,9 +2987,9 @@ end)
             Ms = "Elite Beast Pirate [Lv. 2700]"
             NameQuest = "QuestLvl2700"
             NameMon = "Elite Beast Pirate"
-            CFrameQuest = CFrame.new(-1.24291825, 75.8101349, 268.513947)    
-			CFrameMon = CFrame.new(348.988739, 75.3446808, 523.100952) 
-		elseif MyLevel >= 3025 then  
+            CFrameQuest = CFrame.new(-1041.19666, 75.3444672, 170.048309)    
+			CFrameMon = CFrame.new(-838.555481, 75.3444672, 346.406403) 
+		elseif MyLevel >= 3025 then
             Ms = "Skull Pirate [Lv. 3050]"
             NameQuest = "QuestLvl3025"
             NameMon = "Skull Pirate"
@@ -2975,6 +3003,7 @@ end
     local VirtualUser = game:GetService('VirtualUser')
 
 	function autofarm()
+		godmode = true
 		CheckQuest()
 		if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Quest.QuestBoard.QuestCount.Text,NameMon) then			
 		else
@@ -2993,6 +3022,7 @@ end
                     game:GetService("Players").LocalPlayer.PlayerGui[NameQuest].Dialogue:WaitForChild("Accept").Position = UDim2.new(-1.5,0,-3.5)
                     game:GetService("Players").LocalPlayer.PlayerGui[NameQuest].Dialogue:WaitForChild("Accept").Size = UDim2.new(35,35,35)
 					game:GetService("Players").LocalPlayer.PlayerGui[NameQuest].Dialogue:WaitForChild("Accept").BackgroundTransparency = 1
+					game:GetService("Players").LocalPlayer.PlayerGui[NameQuest].Dialogue:WaitForChild("Accept").ImageTransparency = 1
                 end	
 			end		
             end)
@@ -3010,7 +3040,6 @@ end
                             repeat wait(.1)  
 								CheckQuest()
 								if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Quest.QuestBoard.QuestCount.Text,NameMon) then
-                                EquipWeapon(SelectToolWeapon)
 								game:GetService'VirtualUser':CaptureController()
 								game:GetService'VirtualUser':Button1Down(Vector2.new(1240, 372))
                                 game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,dis,0) * CFrame.Angles(math.rad(-90),0,0)
@@ -3030,7 +3059,7 @@ end
          
  
  game:GetService("RunService").Heartbeat:Connect(function()
-    if AFM or AFB or raidaura or mobau or pk or ENMA then
+    if AFM or AFB or raidaura or mobau or pk or ENMA or SABER then
 		pcall(
 			function()
        game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
@@ -3047,6 +3076,16 @@ spawn(function()
     end
  end)
 
+ spawn(function()
+    while wait(.1) do
+       if AFM and LocalPlayer.PlayerGui.Quest.QuestBoard.Visible == true then
+		pcall(function()
+			EquipWeapon(SelectWeapon1)
+		end)
+       end
+    end
+ end)
+
  tab:Toggle("Auto NewWorld", " ",false, function(x)
     AutoNewworld = x
     end)
@@ -3054,12 +3093,13 @@ spawn(function()
  spawn(function()
     while wait(.1) do
        if AutoNewworld then
+		pcall(
+			function()
 		if MyLevel >= 1500 and OldWorld then
-			
 		  if game.Players.LocalPlayer.Backpack:FindFirstChild("Map") then
 			AFM = false
 			AFB = false
-             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8577.70605, 214.648148, 685.253052)
+             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8783.8584, 211.303848, 1708.29797)
              wait(0.5)
 local args = {
     [1] = workspace.AntiTPNPC.Traveler
@@ -3079,7 +3119,7 @@ game:GetService("ReplicatedStorage").Remotes.Functions.CheckQuest:InvokeServer(u
 			game:GetService("VirtualUser"):CaptureController()
 			game:GetService("VirtualUser"):ClickButton1(Vector2.new())
 			wait(4)
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8577.70605, 214.648148, 685.253052)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8783.8584, 211.303848, 1708.29797)
 			wait(0.5)
 local args = {
    [1] = workspace.AntiTPNPC.Traveler
@@ -3121,6 +3161,7 @@ game:GetService("VirtualUser"):ClickButton1(Vector2.new())
 
              end 
           end
+		end)
 		end
 	end
 end)
@@ -3166,7 +3207,7 @@ function allboss()
 	pcall(
 		function()         
 				for i, v in pairs(game:GetService("Workspace").Monster.Boss:GetChildren()) do             
-				   if v:IsA("Model") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then            
+				   if v:IsA("Model") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 100 then            
 					repeat wait(.1)  
 						EquipWeapon(SelectToolBoss)
 						game:GetService'VirtualUser':CaptureController()
@@ -3179,7 +3220,7 @@ function allboss()
 	
 end
 
-tab:Toggle("Find Boss", " ",false, function(fb) 
+tab:Toggle("Find Boss", " ",false, function(fb)  -- แก้ Position ใหม่
 	if AFB == true then
 		Findboss = fb
 	else
@@ -3197,49 +3238,59 @@ spawn(function()
 
 function findboss()
 	if OldWorld then
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2183.11377, 47.8444557, -1646.91736)
-	wait(2)
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3998.875, 9.99798393, 322.039124)
-	wait(2)
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1923.36218, 13.044528, 1243.84521)
-	wait(2)
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4136.65625, 45.3623886, 3105.26416)
-	wait(2)
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(59.1432037, 99.4314957, -79.532135)
-	wait(2)
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2927.19873, 27.7731609, 1912.29358)
-	wait(2)
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1462.81458, 10.7435398, 3493.36377)
-	wait(2)
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-845.087402, 540.09668, 5227.25879)
-	wait(2)
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8152.97021, 11.0177393, 5627.0415)
-	wait(2)
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3818.15576, 17.672493, 6378.81299)
-	wait(2)
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1085.04187, 226.748688, 8384.25488)
-	wait(2)
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8386.24609, 49.7570839, 1056.45288)
-	wait(2)
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3448.94653, 40.2424316, 13571.792)
-	wait(2)
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(6162.20264, 3.72403193, -2028.25562)
-	wait(2)
+			game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2023.90918, 48.1932945, -1671.4873)
+			wait(2)
+			   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4035.46411, 37.8441544, 244.575745)
+			   wait(2)
+			   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1880.66003, 39.336544, 1225.96362)
+			   wait(2)
+			   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3936.66357, 10.541934, 3236.86377)
+			   wait(2)
+			   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(59.1432037, 99.4314957, -79.532135)
+			   wait(2)
+			   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2826.00098, 18.0717945, 1388.91125)
+			   wait(2)
+			   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1581.31677, 43.0943527, 3541.448)
+			   wait(2)
+			   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-857.51886, 386.473694, 4839.23926)
+			   wait(2)
+			   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8225.72559, 11.84688, 5523.85352)
+			   wait(2)
+			   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4195.46582, 22.1771049, 6134.26416)
+			   wait(2)
+			   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1085.04187, 226.748688, 8384.25488)
+			   wait(2)
+			   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8587.34766, 81.4805832, 1592.68201)
+			   wait(2)
+			   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3448.94653, 40.2424316, 13571.792)
+			   wait(2)
+			   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(6158.94434, 256.987762, -2141.6001)
+			   wait(2)
+			   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(9625.23926, 37.7222023, -3846.9978)
+			   wait(2)
 	elseif newworld then
-		game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-184.444687, 75.3443527, -5313.90967)
-        wait(2)
-		game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3365.94971, 75.3949738, -5102.1416)
+		game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-189.915604, 75.3443527, -5310.46973)
 		wait(2)
-		game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2943.18872, 75.2943649, -1639.52271)
-		wait(2)
-		game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(684.00061, 75.3446808, 138.299988)
-		wait(2)
-		game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3297.04761, 75.4035187, 1114.43579)
-		wait(2)
-		game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1273.80371, 74.7022629, 3604.47974)
-		wait(2)
-		game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3394.99854, 51.5950813, 10291.1699)
-		wait(2)
+		   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3374.13647, 75.3949738, -5103.06982)
+		   wait(2)
+		   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2762.21216, 75.3451385, -1699.57837)
+		   wait(2)
+		   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3211.63965, 75.3451385, -1478.50134)
+		   wait(2)
+		   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-338.920074, 75.3445282, -74.5727921)
+		   wait(2)
+		   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3311.99365, 75.4035187, 1087.27673)
+		   wait(2)
+		   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-935.340515, 74.7125549, 4231.95654)
+		   wait(2)
+		   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4686.07275, 74.7577515, 4637.34033)
+		   wait(2)
+		   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2711.08301, 51.5950127, 10289)
+		   wait(2)
+		   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8639.99707, 14.445549, 1685.66064)
+		   wait(2)
+		   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(9177.5459, 48.8062172, 1785.41931)
+		   wait(2)
 	end
 end
 
@@ -3248,7 +3299,7 @@ spawn(function()
     while wait(.1) do
        if AFB then
 		allboss()
-       end 
+	   end
     end
  end)
 
@@ -3289,6 +3340,43 @@ spawn(function()
  end)
 end
 
+if OldWorld then
+	tab:Label("Swordsman : appears every 2 hours and will de-spawn after 30 minutes")
+   
+	tab:Toggle("Auto Saber", " ",false, function(sb) 
+	   SABER = sb
+   end)
+   function autoSaber()
+   
+	   pcall(
+		   function()         
+			   if game:GetService("Workspace").Monster.Boss:FindFirstChild("Expert Swordsman [Lv. 3000]") then
+				   for i, v in pairs(game:GetService("Workspace").Monster.Boss:GetChildren()) do             
+					  if v.Name == "Expert Swordsman [Lv. 3000]" then            
+					   repeat wait(.1)  
+						   EquipWeapon(SelectToolBoss)
+						   game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(11)
+						   game:GetService'VirtualUser':CaptureController()
+						   game:GetService'VirtualUser':Button1Down(Vector2.new(1240, 372))
+						   game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,dis,0) * CFrame.Angles(math.rad(-90),0,0)
+						   until not v.Parent or v.Humanoid.Health <= 0 or SABER == false
+				   end
+				  end
+			   else
+				   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(9614.0625, 37.7222023, -3778.05054)
+			   end
+		   end) 
+   end
+   
+   spawn(function()
+	   while wait(.1) do
+		  if SABER then
+			autoSaber()
+		  end 
+	   end
+	end)
+   end
+
  local SelectWeaponBoss = tab:Dropdown("Select Weapon (Boss Aura, Mob Aura, ENMA)",Wapon,function(Value)
     SelectToolBoss = Value
 end)
@@ -3312,20 +3400,18 @@ end)
 spawn(function()
     while wait(1) do 
        if buso then 
-		pcall(function()
 		if game.Players.LocalPlayer.Character.Haki.Value == 0 then
-game:GetService("Players").LocalPlayer.Character.Services.Client.BusoEvent:FireServer()
+game:GetService("Players").LocalPlayer.Character.Services.Client.Armament:FireServer()
 		end
-	end)
 		end
 	end
  end)
 
-   tab:Toggle("Auto Skill Z", " ", true, function(z)
+   tab:Toggle("Auto Skill Z", " ", false, function(z)
  	skillz = z
  end)
 
- tab:Toggle("Auto Skill X", " ", true, function(x)
+ tab:Toggle("Auto Skill X", " ", false, function(x)
  	skillx = x
  end)
  tab:Toggle("Auto Skill C", " ", false, function(c)
@@ -3341,9 +3427,8 @@ game:GetService("Players").LocalPlayer.Character.Services.Client.BusoEvent:FireS
 			pcall(function()
 			game:GetService("VirtualInputManager"):SendKeyEvent(true,122,false,game.Players.LocalPlayer.Character.HumanoidRootPart) -- z
 			game:GetService("VirtualInputManager"):SendKeyEvent(false,122,true,game.Players.LocalPlayer.Character.HumanoidRootPart)
-			game:GetService("VirtualInputManager"):SendKeyEvent(false,122,false,game.Players.LocalPlayer.Character.HumanoidRootPart) -- z
+			game:GetService("VirtualInputManager"):SendKeyEvent(false,122,false,game.Players.LocalPlayer.Character.HumanoidRootPart)
 			end)
-
  		end
  	end
  	end)
@@ -3354,7 +3439,7 @@ game:GetService("Players").LocalPlayer.Character.Services.Client.BusoEvent:FireS
 				pcall(function()
 				game:GetService("VirtualInputManager"):SendKeyEvent(true,120,false,game.Players.LocalPlayer.Character.HumanoidRootPart) -- x
 				game:GetService("VirtualInputManager"):SendKeyEvent(false,120,true,game.Players.LocalPlayer.Character.HumanoidRootPart)
-				game:GetService("VirtualInputManager"):SendKeyEvent(false,120,false,game.Players.LocalPlayer.Character.HumanoidRootPart) -- z
+				game:GetService("VirtualInputManager"):SendKeyEvent(false,120,false,game.Players.LocalPlayer.Character.HumanoidRootPart) 
 				end)
  			end
  		end
@@ -3366,7 +3451,7 @@ game:GetService("Players").LocalPlayer.Character.Services.Client.BusoEvent:FireS
 					pcall(function()
 					game:GetService("VirtualInputManager"):SendKeyEvent(true,99,false,game.Players.LocalPlayer.Character.HumanoidRootPart) -- c
 					game:GetService("VirtualInputManager"):SendKeyEvent(false,99,true,game.Players.LocalPlayer.Character.HumanoidRootPart)
-					game:GetService("VirtualInputManager"):SendKeyEvent(false,99,false,game.Players.LocalPlayer.Character.HumanoidRootPart) -- z
+					game:GetService("VirtualInputManager"):SendKeyEvent(false,99,false,game.Players.LocalPlayer.Character.HumanoidRootPart) 
 					end)
  				end
  			end
@@ -3378,34 +3463,13 @@ game:GetService("Players").LocalPlayer.Character.Services.Client.BusoEvent:FireS
 						pcall(function()
 						game:GetService("VirtualInputManager"):SendKeyEvent(true,118,false,game.Players.LocalPlayer.Character.HumanoidRootPart) -- v
 						game:GetService("VirtualInputManager"):SendKeyEvent(false,118,true,game.Players.LocalPlayer.Character.HumanoidRootPart)
-						game:GetService("VirtualInputManager"):SendKeyEvent(false,118,false,game.Players.LocalPlayer.Character.HumanoidRootPart) -- z
+						game:GetService("VirtualInputManager"):SendKeyEvent(false,118,false,game.Players.LocalPlayer.Character.HumanoidRootPart)
 						end)
  					end
  				end
  				end)
-				 function BuyKaido()
-					if game:GetService("Players").LocalPlayer.PlayerStats.lvl.Value == 1 then
-					game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8569.31738, 155.929962, 1030.54907)
-					wait(1)
-					game:GetService("ReplicatedStorage").Remotes.Functions.CheckQuest:InvokeServer(workspace.AntiTPNPC.SwordShop)
-					wait(3)
-							game:GetService("Players").LocalPlayer.PlayerGui.SwordShop.Dialogue:WaitForChild("Accept").Position = UDim2.new(-1.5,0,-3.5)
-							game:GetService("Players").LocalPlayer.PlayerGui.SwordShop.Dialogue:WaitForChild("Accept").Size = UDim2.new(35,35,35)
-							game:GetService("Players").LocalPlayer.PlayerGui.SwordShop.Dialogue:WaitForChild("Accept").BackgroundTransparency = 1
-				wait(1)
-				for i = 1,3,1 do 
-				game:GetService("VirtualUser"):CaptureController()
-				game:GetService("VirtualUser"):ClickButton1(Vector2.new())
-				end
-				end
-			end
-
 
 local Stats = win:Tab("Stats", "http://www.roblox.com/asset/?id=6023426974")
-sd = false
-Stats:Toggle("•   SD","",false,function(value)
-   sd = value
-end)
 melee = false
 Stats:Toggle("✊   Melee","",false,function(value)
    melee = value
@@ -3430,54 +3494,55 @@ Stats:Slider("Set Point","",1,1524,1,function(p)
 
     spawn(function()
         while wait() do
-			if sd then
-			pcall(function()
-			game:GetService("Players").LocalPlayer.PlayerGui.Stats.Button.StatsFrame.Sword.RemoteEvent:FireServer(value)
-
-			if game:GetService("Players").LocalPlayer.PlayerStats.sword.Value == 3875 then
-			game:GetService("Players").LocalPlayer.PlayerGui.Stats.Button.StatsFrame.Defense.RemoteEvent:FireServer(value)
-			end
-	end)
-	end
-
           if melee then
 			pcall(function()
 local args = {
-    [1] = value
+    [1] = "Melee",
+    [2] = value
 }
 
-game:GetService("Players").LocalPlayer.PlayerGui.Stats.Button.StatsFrame.Melee.RemoteEvent:FireServer(unpack(args))
+game:GetService("Players").LocalPlayer.PlayerGui.Stats.Button.StatsFrame.RemoteEvent:FireServer(unpack(args))
 end)
-          end
+          end 
           if defense then
 			pcall(function()
+-- Script generated by SimpleSpy - credits to exx#9394
+
 local args = {
-    [1] = value
+    [1] = "Defense",
+    [2] = value
 }
 
-game:GetService("Players").LocalPlayer.PlayerGui.Stats.Button.StatsFrame.Defense.RemoteEvent:FireServer(unpack(args))
+game:GetService("Players").LocalPlayer.PlayerGui.Stats.Button.StatsFrame.RemoteEvent:FireServer(unpack(args))
+
 end)
           end 
           if sword then
-			pcall(function()
+
+pcall(function()
+-- Script generated by SimpleSpy - credits to exx#9394
 
 local args = {
-    [1] = value
+    [1] = "Sword",
+    [2] = value
 }
 
-game:GetService("Players").LocalPlayer.PlayerGui.Stats.Button.StatsFrame.Sword.RemoteEvent:FireServer(unpack(args))
+game:GetService("Players").LocalPlayer.PlayerGui.Stats.Button.StatsFrame.RemoteEvent:FireServer(unpack(args))
+
 end)
 
           end 
           if demonfruit then
 			pcall(function()
+
 local args = {
-    [1] = value
+    [1] = "Devil Fruit",
+    [2] = value
 }
 
-game:GetService("Players").LocalPlayer.PlayerGui.Stats.Button.StatsFrame:FindFirstChild("Devil Fruit").RemoteEvent:FireServer(unpack(args))
-end)
+game:GetService("Players").LocalPlayer.PlayerGui.Stats.Button.StatsFrame.RemoteEvent:FireServer(unpack(args))
 
+end)
           end
         end
         end)
@@ -3500,6 +3565,7 @@ end)
 					   game:GetService("Players").LocalPlayer.PlayerGui["Elite Pirate"].Dialogue:WaitForChild("Accept").Position = UDim2.new(-1.5,0,-3.5)
 					   game:GetService("Players").LocalPlayer.PlayerGui["Elite Pirate"].Dialogue:WaitForChild("Accept").Size = UDim2.new(35,35,35)
 					   game:GetService("Players").LocalPlayer.PlayerGui["Elite Pirate"].Dialogue:WaitForChild("Accept").BackgroundTransparency = 1
+					   game:GetService("Players").LocalPlayer.PlayerGui["Elite Pirate"].Dialogue:WaitForChild("Accept").ImageTransparency = 1
 			   end	
 			end)
 			wait(1)
@@ -3511,7 +3577,7 @@ end)
    elseif OldWorld then
 	Teleport:Button("✈️ Second Sea","", function()
 		while true do wait()
-		game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2329.33887, 49.1540298, -1998.07971)
+		game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1834.88977, 22.6869621, -1482.9231)
 
 		local args = {
 			[1] = workspace.AntiTPNPC:FindFirstChild("Elite Pirate")
@@ -3525,6 +3591,7 @@ end)
 				   game:GetService("Players").LocalPlayer.PlayerGui["Elite Pirate"].Dialogue:WaitForChild("Accept").Position = UDim2.new(-1.5,0,-3.5)
 				   game:GetService("Players").LocalPlayer.PlayerGui["Elite Pirate"].Dialogue:WaitForChild("Accept").Size = UDim2.new(35,35,35)
 				   game:GetService("Players").LocalPlayer.PlayerGui["Elite Pirate"].Dialogue:WaitForChild("Accept").BackgroundTransparency = 1
+				   game:GetService("Players").LocalPlayer.PlayerGui["Elite Pirate"].Dialogue:WaitForChild("Accept").ImageTransparency = 1
 		   end	
 		end)
 		wait(1)
@@ -3540,49 +3607,49 @@ end)
   
  if OldWorld then
  Teleport:Button("Louge town"," ",function()
- game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2183.11377, 47.8444557, -1646.91736)
+ game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2023.90918, 48.1932945, -1671.4873)
 end)
 Teleport:Button("Pirate Island"," ",function()
-    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3998.875, 9.99798393, 322.039124)
+    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4035.46411, 37.8441544, 244.575745)
    end)
    Teleport:Button("Shells town"," ",function()
-    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1923.36218, 13.044528, 1243.84521)
+    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1880.66003, 39.336544, 1225.96362)
    end)
    Teleport:Button("Arlong Park"," ",function()
-    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4136.65625, 45.3623886, 3105.26416)
+    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3936.66357, 10.541934, 3236.86377)
    end)
    Teleport:Button("Baratie"," ",function()
     game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(59.1432037, 99.4314957, -79.532135)
    end)
    Teleport:Button("Snow Island"," ",function()
-    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2927.19873, 27.7731609, 1912.29358)
+    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2826.00098, 18.0717945, 1388.91125)
    end)
    Teleport:Button("Desert Island"," ",function()
-    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1462.81458, 10.7435398, 3493.36377)
+    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1581.31677, 43.0943527, 3541.448)
    end)
    Teleport:Button("Sky Island"," ",function()
-    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-845.087402, 540.09668, 5227.25879)
+    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-857.51886, 386.473694, 4839.23926)
    end)
    Teleport:Button("Bubble Island"," ",function()
-    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8152.97021, 11.0177393, 5627.0415)
+    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8225.72559, 11.84688, 5523.85352)
    end)
    Teleport:Button("Enies Lobby"," ",function()
-    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3818.15576, 17.672493, 6378.81299)
+    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4195.46582, 22.1771049, 6134.26416)
    end)
    Teleport:Button("Thriller Bark"," ",function()
     game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1085.04187, 226.748688, 8384.25488)
    end)
    Teleport:Button("Marineford"," ",function()
-    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8386.24609, 49.7570839, 1056.45288)
+    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8587.34766, 81.4805832, 1592.68201)
    end)
    Teleport:Button("Fish Man Island"," ",function()
     game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3448.94653, 40.2424316, 13571.792)
    end)
    Teleport:Button("Rock Island"," ",function()
-    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(6162.20264, 3.72403193, -2028.25562)
+    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(6158.94434, 256.987762, -2141.6001)
    end)
    Teleport:Button("Stone Arena"," ",function()
-    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(9626.79199, 17.4966908, -3912.04541)
+    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(9625.23926, 37.7222023, -3846.9978)
    end)
 elseif newworld then
     Teleport:Button("Dock"," ",function()
@@ -3612,76 +3679,82 @@ elseif newworld then
 	Teleport:Button("Skull Island"," ",function()
         game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3438.10791, 51.4371223, 10338.6338)
     end)
+	Teleport:Button("Dead Tundra"," ",function()
+        game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8431.08398, 14.3615818, 990.840576)
+    end)
 end
 
 local Teleport2 = win:Tab("Teleport NPC", "http://www.roblox.com/asset/?id=6034503375")
 if OldWorld then
 Teleport2:Button("Black Market"," ",function()
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2187.9314, 79.8477173, -1728.40076)
+	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2133.73657, 79.9022598, -1596.13232)
 end)
 Teleport2:Button("Gacha"," ",function()
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2276.00708, 47.8444557, -1651.40674)
+	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2015.10571, 48.1432877, -1727.69031)
 end)
 Teleport2:Button("Delete Fruit"," ",function()
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-855.36853, 540.096191, 5112.91797)
+	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-930.983154, 386.420685, 4756.65137)
+end)
+Teleport2:Button("Reset Stats"," ",function()
+	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2049.5708, 48.1432991, -1802.85901)
+end)
+Teleport2:Button("Random Appearance"," ",function()
+	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2095.91748, 49.3003693, -1766.4021)
 end)
 Teleport2:Button("Soru Shop"," ",function()
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1881.86316, 14.1367779, 1152.2262)
+	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1643.65637, 40.609642, 1174.27539)
 end)
 Teleport2:Button("Buso Shop"," ",function()
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8211.19336, 11.5125046, 5721.76221)
+	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8137.15918, 12.7555771, 5436.8208)
 end)
 Teleport2:Button("Ken Shop"," ",function()
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-875.412109, 541.308044, 5021.82715)
-end)
-Teleport2:Button("Shark Blade"," ",function()
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4398.04395, 10.6321564, 2970.48389)
-end)
-Teleport2:Button("Bisento Shop"," ",function()
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1442.70227, 92.8520279, 3985.26807)
+	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-892.359741, 386.964813, 4697.16016)
 end)
 Teleport2:Button("Pipe Shop"," ",function()
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8267.35742, 11.0177393, 5565.82129)
+	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8103.03223, 11.8468285, 5374.82129)
 end)
 Teleport2:Button("Triple Katana"," ",function()
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(6526.14453, 189.579605, -1911.77588)
+	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(6227.92041, 26.5671806, -2121.84155)
 end)
 Teleport2:Button("Mini Mace"," ",function()
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8569.31738, 155.929962, 1030.54907)
+	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8700.28711, 310.095123, 1923.63208)
 end)
 Teleport2:Button("DarkLeg Shop"," ",function()
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(6433.85498, 98.9280777, -2337.80737)
+	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(6433.2915, 103.330521, -2334.13794)
 end)
 Teleport2:Button("Cyborg"," ",function()
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4616.29492, 10.0885315, 3045.6438)
+	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4581.2666, 123.651573, 3224.02539)
 end)
 Teleport2:Button("Water Style"," ",function()
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2862.90186, 40.2724686, 14145.9863)
+	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2857.86548, 40.2725754, 14145.1279)
 end)
 Teleport2:Button("Traveler"," ",function()
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8578.53223, 214.648514, 684.610962)
+	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8783.8584, 211.303848, 1708.29797)
 end)
 Teleport2:Button("Elite Pirate"," ",function()
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2334.01343, 49.1542892, -1999.88342)
+	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1836.13538, 17.2347126, -1483.94019)
 end)
 elseif newworld then
 	Teleport2:Button("Black Market"," ",function()
 		game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1908.87976, 72.3570099, -2100.90552)
 	end)
 	Teleport2:Button("Gacha"," ",function()
-		game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1339.75684, 75.3445282, -5789.28076)
+		game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2326.70313, 75.4357529, -1890.0199)
+	end)
+	Teleport2:Button("Reset Stats"," ",function()
+		game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2274.44263, 75.294342, -1778.19775)
 	end)
 	Teleport2:Button("DarkLeg Shop"," ",function()
-		game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(157.649277, 75.8476715, -4729.35742)
+		game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(783.430359, 75.2943649, -4034.49854)
 	end)
 	Teleport2:Button("Cyborg"," ",function()
-		game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1403.32922, 75.9599457, -5727.85303)
+		game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(841.562561, 76.1378403, -4033.59741)
 	end)
 	Teleport2:Button("Water Style"," ",function()
-		game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(851.30658, 75.0428696, -3956.13306)
+		game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(851.139587, 75.2943649, -3968.21313)
 	end)
 	Teleport2:Button("Dragon Claw"," ",function()
-		game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(908.901611, 432.900879, -853.227783)
+		game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(246.915741, 432.900879, -936.023315)
 	end)
 	Teleport2:Button("Awake Master"," ",function()
 		game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2067.57422, 169.789749, 5003.48877)
@@ -3772,7 +3845,7 @@ Players:Line()
 
   if OldWorld then
   Dungeon:Button("Teleport Raid"," ",function()
-	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8552.72363, 49.7470818, 682.038574)
+	game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8699.43457, 103.673241, 1588.67957)
    end)
    elseif newworld then 
 	Dungeon:Button("Teleport Raid"," ",function()
@@ -3793,6 +3866,7 @@ Dungeon:Label("Raid Aura : It is recommended to enable the auto skill.")
    spawn(function()
 	while wait(.1) do
 	  if raidaura then
+		godmode = true
 		for i,v in pairs(game:GetService("Workspace").MOB:GetChildren()) do
 			   pcall(function()
 				if v:IsA("Model") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then            
@@ -3934,7 +4008,7 @@ Misc:Button("Invisible Mode"," ",function() -- Ghost
    game.Players.LocalPlayer.Character.LowerTorso:Destroy()
    end)
 
-Misc:Toggle("Semi God"," ",true,function(value)
+Misc:Toggle("Semi God"," ",false,function(value)
 	godmode = value
  end)
 
@@ -3973,15 +4047,6 @@ Misc:Toggle("Semi God"," ",true,function(value)
     end
     end)
 
-	Misc:Button("Spawn Coffin Boat"," ",function() -- Ghost
-local args = {
-    [1] = "CoffinBoat",
-    [2] = "ShipA"
-}
-
-game:GetService("ReplicatedStorage").Remotes.Events.Ship:FireServer(unpack(args))
-
-		end)
 
 		Misc:Button("FPS Boost"," ",function()
 			local a = game
@@ -4091,7 +4156,7 @@ ImageLabel.Visible = true
 ImageLabel.ZIndex = 1 
 ImageLabel.Archivable = true 
 ImageLabel.ClipsDescendants = false 
-ImageLabel.Image = "rbxassetid://5039416271" 
+ImageLabel.Image = "rbxassetid://6807246008" 
 ImageLabel.ImageColor3 = Color3.new(1, 1, 1) 
 ImageLabel.ImageRectOffset = Vector2.new(0, 0) 
 ImageLabel.ImageRectSize = Vector2.new(0, 0) 
@@ -4107,35 +4172,73 @@ ImageLabel.SliceScale = 1
 	end
 end)
 end
-function UseCode(Text)
-	game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(Text)
- end
- UseCode("200MVISITS")
- UseCode("300KFAV")
- UseCode("Brachio")
- UseCode("DinoxLive")
- UseCode("REDBIRD")
- UseCode("BeckyStyle")
- UseCode("Peodiz")
- UseCode("KingPieceComeBack")
- UseCode("FUDD10")
- UseCode("FUDD10")
+	
+Misc:Button("Spawn Coffin Boat"," ",function() 
+
+local args = {
+    [1] = "CoffinBoat",
+    [2] = "ShipA"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Events.Ship:FireServer(unpack(args))
+
+end)
 
 Misc:Button("Redeem AllCode"," ",function() -- Code
 
-	function UseCode(Text)
-		game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(Text)
-	 end
-	 UseCode("200MVISITS")
-	 UseCode("300KFAV")
-	 UseCode("Brachio")
-	 UseCode("DinoxLive")
-	 UseCode("REDBIRD")
-	 UseCode("BeckyStyle")
-	 UseCode("Peodiz")
-	 UseCode("KingPieceComeBack")
-	 UseCode("FUDD10")
-	 UseCode("FUDD10")
+local args = {
+    [1] = "SORRYFORSHUTDOWN"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+wait(.2)
+local args = {
+    [1] = "300MVISITS"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+wait(.2)
+local args = {
+    [1] = "500KFAV"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+wait(.2)
+local args = {
+    [1] = "GasGas"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+wait(.2)
+local args = {
+    [1] = "DinoxLive"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+wait(.2)
+local args = {
+    [1] = "REDBIRD"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+wait(.2)
+local args = {
+    [1] = "BeckyStyle"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+wait(.2)
+local args = {
+    [1] = "Peodiz"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
+wait(.2)
+local args = {
+    [1] = "KingPieceComeBack"
+}
+
+game:GetService("ReplicatedStorage").Remotes.Functions.redeemcode:InvokeServer(unpack(args))
 
 	end)
 
@@ -4487,8 +4590,7 @@ end
  Game:Line()
 
 Game:Button("Delete Ui"," ",function()
- local ui = game:GetService("CoreGui"):FindFirstChild("BETA")
+ local ui = game:GetService("CoreGui"):FindFirstChild(_G.Ui)
 	ui:Destroy()
 end)
 end
-BuyKaido()
