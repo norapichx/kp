@@ -1,6 +1,6 @@
 while true do wait()
 	if game.Players.LocalPlayer then
-	wait(5)
+	wait(15)
 	break
 	end
 end
