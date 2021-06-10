@@ -2814,7 +2814,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------
 
 
-local win = Flux:Window("BETA", "King Legacy", Color3.fromRGB(255, 0, 0), Enum.KeyCode.RightControl)
+local win = Flux:Window("BETA0.7", "King Legacy", Color3.fromRGB(255, 0, 0), Enum.KeyCode.RightControl)
 local tab = win:Tab("AutoFarm", "http://www.roblox.com/asset/?id=6022668907")
 
 local MyLevel = game:GetService("Players").LocalPlayer.PlayerStats.lvl.Value
@@ -2874,30 +2874,42 @@ tab:Button("Refresh Weapon"," ",function()
 		end
 	end
 end)
-
+tab:Textbox("Reach Lv.", "Reach Lv.", false, function(x)
+	_G.lv = x
+	print(_G.lv)
+end)
+tab:Toggle("Break", "Break Level",false, function(x) 
+    BL = x
+end)
  -- CheckQuest
 
  function CheckQuest() -- ver. ไม่สมบูรณ์
     local MyLevel = game:GetService("Players").LocalPlayer.PlayerStats.lvl.Value
     if OldWorld then -- เก่า
-        if MyLevel == 1 or MyLevel <= 9 then -- Soldier [Lv. 1]
+        if MyLevel == 1 or MyLevel <= 9 then -- Soldier 
            Ms = "Soldier [Lv. 1]"
            NameQuest = "QuestLvl1"
            NameMon = "Soldier"
            CFrameQuest = CFrame.new(2278.07324, 48.1432991, -1649.34082)
 		   CFrameMon = CFrame.new(2335.67432, 48.1932831, -1606.96716)
-        elseif MyLevel == 10 or MyLevel <= 49 then
+        elseif MyLevel == 10 or MyLevel <= 19 then -- Clown Pirate 
             Ms = "Clown Pirate [Lv. 10]"
             NameQuest = "QuestLvl10"
             NameMon = "Clown Pirate"
             CFrameQuest = CFrame.new(2496.50562, 48.1313591, -1771.6543)
 			CFrameMon = CFrame.new(2459.31006, 48.1940727, -1671.36938)
-        elseif MyLevel == 50 or MyLevel <= 99 then 
-            Ms = "Clown Pirate [Lv. 50]"
-            NameQuest = "QuestLvl50"
-            NameMon = "Clown Pirate"
-            CFrameQuest = CFrame.new(4024.19287, 37.7941399, 268.702942)
-			CFrameMon = CFrame.new(4050.6897, 37.7941399, 180.034821)
+        elseif MyLevel == 20 or MyLevel <= 29 then -- Smoky
+            Ms = "Smoky [Lv. 20]"
+            NameQuest = "QuestLvl20"
+            NameMon = "Smoky"
+            CFrameQuest = CFrame.new(2228.21899, 48.1432991, -1782.27734)
+			CFrameMon = CFrame.new(2321.33008, 48.1932945, -1829.81458)
+		elseif MyLevel == 20 or MyLevel <= 29 then -- Tashi
+            Ms = "Smoky [Lv. 20]"
+            NameQuest = "QuestLvl20"
+            NameMon = "Smoky"
+            CFrameQuest = CFrame.new(2013.79492, 48.1417198, -1807.34363)
+			CFrameMon = CFrame.new(2013.79492, 48.1417198, -1807.34363)
         elseif MyLevel == 100 or MyLevel <= 179 then 
             Ms = "Commander [Lv. 100]"
             NameQuest = "QuestLvl100"
@@ -3005,16 +3017,13 @@ end
     local VirtualUser = game:GetService('VirtualUser')
 
 	function autofarm()
-		godmode = true
 		CheckQuest()
-		if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Quest.QuestBoard.QuestCount.Text,NameMon) then			
+		if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Quest.QuestBoard.QuestCount.Text,NameMon) then
 		else
 			game:GetService("Players").LocalPlayer.PlayerGui.Quest.QuestBoard.Visible = false
 		end
 		if LocalPlayer.PlayerGui.Quest.QuestBoard.Visible == false then
-			  CheckQuest()
 			  LocalPlayer.Character.HumanoidRootPart.CFrame = CFrameQuest
-              CheckQuest()
 			  wait(1)
 			  pcall(function()
               game:GetService("ReplicatedStorage").Remotes.Functions.CheckQuest:InvokeServer(workspace.AntiTPNPC[NameQuest])
@@ -3024,33 +3033,29 @@ end
                     game:GetService("Players").LocalPlayer.PlayerGui[NameQuest].Dialogue:WaitForChild("Accept").Size = UDim2.new(35,35,35)
 					game:GetService("Players").LocalPlayer.PlayerGui[NameQuest].Dialogue:WaitForChild("Accept").BackgroundTransparency = 1
 					game:GetService("Players").LocalPlayer.PlayerGui[NameQuest].Dialogue:WaitForChild("Accept").ImageTransparency = 1
-                end	
-			end		
+                end
+			end
             end)
                  game:GetService("VirtualUser"):CaptureController()
                 game:GetService("VirtualUser"):ClickButton1(Vector2.new())
         elseif LocalPlayer.PlayerGui.Quest.QuestBoard.Visible == true then
-            CheckQuest()   
-			pcall(
-				function()         
-                        for i, v in pairs(game:GetService("Workspace").Monster.Mon:GetChildren()) do                 
-                           CheckQuest()  
+            CheckQuest()
+			pcall(function()
+						CheckQuest()
+                        for i, v in pairs(game:GetService("Workspace").Monster.Mon:GetChildren()) do
                            if v:IsA("Model") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and v.Name == Ms then            
-                            CheckQuest()
-						if game:GetService("Workspace").Monster.Mon:FindFirstChild(Ms) then
-                            repeat wait(.1)  
-								CheckQuest()
-								if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Quest.QuestBoard.QuestCount.Text,NameMon) then
-								game:GetService'VirtualUser':CaptureController()
-								game:GetService'VirtualUser':Button1Down(Vector2.new(1240, 372))
-                                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,dis,0) * CFrame.Angles(math.rad(-90),0,0)
-								else
-									game:GetService("Players").LocalPlayer.PlayerGui.Quest.QuestBoard.Visible = false
+								if game:GetService("Workspace").Monster.Mon:FindFirstChild(Ms) then
+									Hit = true
+                            		repeat wait()
+									if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Quest.QuestBoard.QuestCount.Text,NameMon) then
+                                		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,dis,0) * CFrame.Angles(math.rad(-90),0,0)
+									else
+										game:GetService("Players").LocalPlayer.PlayerGui.Quest.QuestBoard.Visible = false
 								end
                                 until not v.Parent or v.Humanoid.Health <= 0 or AFM == false or game:GetService("Players").LocalPlayer.PlayerGui.Quest.QuestBoard.Visible == false
+								Hit = false
                         end
 					   else    
-						CheckQuest() 
 						game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrameMon
 					   end       
 					end 
@@ -3077,13 +3082,41 @@ spawn(function()
     end
  end)
 
+
+ spawn(function() -- Hit
+	while wait() do
+	   if Hit then
+		VirtualUser:CaptureController()
+		VirtualUser:ClickButton1(Vector2.new(851, 158), game:GetService("Workspace").Camera.CFrame)
+		VirtualUser:ClickButton1(Vector2.new(851, 158), game:GetService("Workspace").Camera.CFrame)
+	   end
+	end
+ end)
+
  spawn(function()
     while wait(.1) do
 		pcall(function()
        if AFM and LocalPlayer.PlayerGui.Quest.QuestBoard.Visible == true then
 			EquipWeapon(SelectWeapon1)
        end
+	   if mobau then
+		EquipWeapon(SelectWeapon1)
+   	   end
 	end)
+    end
+ end)
+
+ spawn(function()
+    while wait(.1) do
+       if BL then
+		lv = tonumber(_G.lv)
+		pcall(function ()
+		if game.Players.LocalPlayer.PlayerStats.lvl.Value >= lv then
+			print("BREAK..!")
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/norapichx/BF-Utility/main/Serverhop.lua"))()
+		end
+	end)
+       end 
     end
  end)
 
@@ -3179,13 +3212,13 @@ function mobaura()
 	pcall(
 		function()         
 				for i, v in pairs(game:GetService("Workspace").Monster.Mon:GetChildren()) do             
-				   if v:IsA("Model") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and (v.HumanoidRootPart.Position-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 300 and v.Humanoid.Health > 0 then            
-					repeat wait(.1)  
-						EquipWeapon(SelectToolBoss)
-						game:GetService'VirtualUser':CaptureController()
-						game:GetService'VirtualUser':Button1Down(Vector2.new(1240, 372))
+				   if v:IsA("Model") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and 
+				   (v.HumanoidRootPart.Position-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 1000 then
+					Hit = true
+					repeat wait()  
 						game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,dis,0) * CFrame.Angles(math.rad(-90),0,0)
 						until not v.Parent or v.Humanoid.Health <= 0 or mobau == false
+					Hit = false
 				end
 			   end
 		end) 
@@ -3209,8 +3242,8 @@ function allboss()
 		function()         
 				for i, v in pairs(game:GetService("Workspace").Monster.Boss:GetChildren()) do             
 				   if v:IsA("Model") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 100 then            
-					repeat wait(.1)  
-						EquipWeapon(SelectToolBoss)
+					repeat wait()  
+						EquipWeapon(SelectWeapon1)
 						game:GetService'VirtualUser':CaptureController()
 						game:GetService'VirtualUser':Button1Down(Vector2.new(1240, 372))
 						game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,dis,0) * CFrame.Angles(math.rad(-90),0,0)
@@ -3318,7 +3351,7 @@ function autoENMA()
 				for i, v in pairs(game:GetService("Workspace").Monster.Boss:GetChildren()) do             
 				   if v.Name == "King Samurai [Lv. 3500]" then            
 					repeat wait(.1)  
-						EquipWeapon(SelectToolBoss)
+						EquipWeapon(SelectWeapon1)
 						game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(11)
 						game:GetService'VirtualUser':CaptureController()
 						game:GetService'VirtualUser':Button1Down(Vector2.new(1240, 372))
@@ -3354,8 +3387,8 @@ if OldWorld then
 			   if game:GetService("Workspace").Monster.Boss:FindFirstChild("Expert Swordsman [Lv. 3000]") then
 				   for i, v in pairs(game:GetService("Workspace").Monster.Boss:GetChildren()) do             
 					  if v.Name == "Expert Swordsman [Lv. 3000]" then            
-					   repeat wait(.1)  
-						   EquipWeapon(SelectToolBoss)
+					   repeat wait()  
+						   EquipWeapon(SelectWeapon1)
 						   game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(11)
 						   game:GetService'VirtualUser':CaptureController()
 						   game:GetService'VirtualUser':Button1Down(Vector2.new(1240, 372))
@@ -3377,20 +3410,6 @@ if OldWorld then
 	   end
 	end)
    end
-
- local SelectWeaponBoss = tab:Dropdown("Select Weapon (Boss Aura, Mob Aura, ENMA)",Wapon,function(Value)
-    SelectToolBoss = Value
-end)
-
-tab:Button("Refresh Weapon"," ",function()
-    SelectWeaponBoss:Clear()
-    Wapon = {}
-	for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do  
-		if v:IsA("Tool") then
-			SelectWeaponBoss:Add(v.Name)
-		end
-	end
-end)
 
 tab:Line()
  
@@ -4587,6 +4606,19 @@ end
  Game:Button("Server Hop"," ",function() -- copy  P shoji & P nate
 	Teleport()
  end)
+ Game:Button("TP Chest Sea Beast"," ",function() -- copy  P shoji & P nate
+local MyCF = game:service'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame
+for i,v in pairs(game:GetService("Workspace").Island:GetDescendants()) do
+    if v:IsA("Model") then
+        if v.Name:find("Legacy Island") then
+            game:service'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").Island[v.Name].ChestSpawner.Position)
+            print(ChestP)
+        end
+    end
+end
+ end)
+        
+
  Game:Label("UI Toggle : Right-Ctrl")
  Game:Line()
 
